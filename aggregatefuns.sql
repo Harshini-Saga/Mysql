@@ -63,20 +63,20 @@ where size=2 or size=3 or size=4;
 Select * from tips
 where size between 2 and 4;
 
--- SECOND HIGHEST TOTAL BILL RECORD
+-- 13.SECOND HIGHEST TOTAL BILL RECORD
 Select * from tips 
 order by total_bill desc
 LIMIT 1 OFFSET 1;
 
--- SECOND AND THIRD HIGHEST
+-- 14.SECOND AND THIRD HIGHEST
 Select * from tips 
 order by total_bill desc
 LIMIT 2 OFFSET 1;
 
--- RETURN TOTAL RECORDS IN TIPS TABLE
+-- 15.RETURN TOTAL RECORDS IN TIPS TABLE
 Select COUNT(*) from tips;
 
--- RETURN TOTAL MALE SMOKER COUNT
+-- 16.RETURN TOTAL MALE SMOKER COUNT
 Select Count(*) from tips
  where gender="Male" and smoker="Yes";
  
@@ -91,3 +91,75 @@ where gender="Female" and smoker="No";
 
 -- RETURN MINIMUM AND MAXIMUM TOTAL BILL
 Select Min(total_bill),Max(total_bill) from tips;
+
+select * from tips;
+-- GROUP BY --
+-- FIND THE SUNDAY RECORDS COUNT
+Select count(*) from tips
+group by day="Sun";
+-- GET THE GENDER COLUMN UNIQUE VALUES
+Select distinct(gender) from tips;
+select gender from tips
+group by gender;
+-- GET THE DINNER TIME RECORDS COUNT
+select count(*) from tips
+where time="Dinner";
+
+-- 21.GET THE TOTAL RECORDS COUNT AS PER THE GENDER COLUMN
+Select gender,Count(*) from tips
+group by gender;
+
+-- 22.GET THE SMOKER AND NON-SMOKER COUNT
+select smoker,Count(*) from tips 
+group by smoker;
+
+-- 23.GET THE SUNDAY TOTAL RECORDS AS PER THE GENDER 
+Select day,gender,Count(*) from tips 
+where day="Sun"
+group by gender;
+
+-- 24.GET THE SIZE 2'S TOTAL COUNT AS PER THE GENDER
+Select size,gender,Count(*) from tips
+where size=2
+group by gender;
+
+-- 25.GET THE EACH SIZE COUNT IN DESCENDING ORDER
+select size,Count(*) as total_count from tips
+group by size
+Order by total_count desc;
+
+-- 26.GET THE SIZE 2,3 AND 4 SMOKER AND NON-SMOKER COUNT
+Select smoker,Count(*) from tips
+where size in (2,3,4)
+group by smoker;
+
+-- 27.GET THE EACH SIZE COUNT AS PER THE GENDER
+Select size,gender,Count(*) as total_count from tips
+group by size,gender
+order by size asc,total_count desc;
+
+-- 28.FIND THE EACH SIZE MAX AND MIN TOTAL_BILL
+select size,max(total_bill),min(total_bill) from tips
+group by size;
+
+-- 29.FIND THE MALE TOTAL RECORDS AS PER THE DAY IN DESCENDING ORDER
+Select day,gender,count(*) as total_records from tips
+where gender="Male"
+group by day
+order by total_records desc;
+
+-- 31.GET EACH SIZE RECORDS WHICH THE TOTAL COUNT IS GREATER THAN 30
+select size,count(*)as total_count from tips
+group by size
+having total_count>30;
+
+-- 31.GET THE EACH SIZE GENDER COUNT WHICH IS MORETHAN 20
+SELECT SIZE,COUNT(*) AS TOTAL_COUNT FROM TIPS 
+GROUP BY GENDER
+HAVING COUNT(*) >20
+;
+-- 32.GET THE SIZES WHICH IS MAXIMUM TOTAL_BILL AND MINIMUM TOTAL_BILL 
+												-- DIFFERENCE IS LESSER THAN 10
+SELECT SIZE,MAX(TOTAL_BILL),MIN(TOTAL_BILL) FROM TIPS
+GROUP BY SIZE
+HAVING MAX(TOTAL_BILL)-MIN(TOTAL_BILL)<30;
