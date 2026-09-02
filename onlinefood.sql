@@ -407,3 +407,111 @@ from orders;
 select sum(discount) from orders;
 -- 47.Calculate the total successful payment amount and total refunded amount.
 select * from payments;
+-- COUNT
+-- 48.Count customers in each city.
+select city,count(*) as total_customers
+from customers
+group by city;
+-- 49.Count restaurants in each city.
+select city,count(*) as total_count
+from restaurants
+group by city;
+-- 50.Count menu items in each category.
+select category_id,count(*) as total_items
+from menu
+group by category_id;
+-- 51.Calculate the average menu price for each category.
+select category_id,avg(price)
+from menu
+group by category_id;
+-- 52.Calculate the average preparation time for each category.
+select category_id,avg(preparation_time) as avg_prep_time
+from menu
+group by category_id;
+-- 53.Count menu items by vegetarian/non-vegetarian status.
+select is_veg,count(*) as menu_count
+from menu
+group by is_veg;
+-- 54.Count orders by order status.
+select order_status,count(*) as total_orders
+from orders
+group by order_status;
+-- 55.Count orders by payment status.
+select payment_status,count(*) as total_orders
+from orders
+group by payment_status;
+-- 56.Calculate total order revenue for each restaurant.
+select restaurant_id,sum(final_amount)
+from orders
+group by restaurant_id;
+-- 57.Calculate total orders placed by each customer.
+select customer_id,count(*) as total_orders
+from orders
+group by customer_id;
+-- 58.Calculate total spending for each customer.
+select customer_id,sum(final_amount) as total_spending
+from orders
+group by customer_id;
+-- 59.Calculate average customer rating for each restaurant.
+select restaurant_id,avg(rating) as avg_rating
+from ratings
+group by restaurant_id;
+-- 7. HAVING — 10 Questions
+-- 60.Find cities having more than 5 restaurants.
+select city,count(*) as total_count
+from restaurants
+group by city
+having count(*)>5;
+-- 61.Find categories having more than 10 menu items.
+select category_id,count(*)
+from menu
+group by category_id
+having count(*)>10;
+-- 62.Find restaurants having more than 50 menu items.
+select restaurant_id,count(*)
+from menu
+group by restaurant_id
+having count(*)>50;
+-- 63. Find restaurants that have received more than 100 orders.
+SELECT restaurant_id, COUNT(*) AS total_orders
+FROM Orders
+GROUP BY restaurant_id
+HAVING COUNT(*) > 100;
+
+-- 64. Find customers who have placed more than 5 orders.
+SELECT customer_id, COUNT(*) AS total_orders
+FROM Orders
+GROUP BY customer_id
+HAVING COUNT(*) > 5;
+
+-- 65. Find customers whose total spending exceeds ₹20,000.
+SELECT customer_id, SUM(final_amount) AS total_spending
+FROM Orders
+GROUP BY customer_id
+HAVING SUM(final_amount) > 20000;
+
+-- 66. Find restaurants whose total order revenue exceeds ₹10 lakh.
+SELECT restaurant_id, SUM(final_amount) AS total_revenue
+FROM Orders
+GROUP BY restaurant_id
+HAVING SUM(final_amount) > 1000000;
+
+-- 67. Find categories whose average item price exceeds ₹300.
+SELECT category_id, ROUND(AVG(price),2) AS avg_price
+FROM Menu
+GROUP BY category_id
+HAVING AVG(price) > 300;
+
+-- 68. Find restaurants whose average customer rating is greater than 4.
+SELECT restaurant_id, ROUND(AVG(rating),2) AS avg_rating
+FROM Ratings
+GROUP BY restaurant_id
+HAVING AVG(rating) > 4;
+
+-- 69. Find payment methods whose total successful payment amount exceeds ₹5 lakh.
+SELECT payment_method,
+       SUM(amount) AS total_amount
+FROM Payments
+WHERE payment_status = 'Success'
+GROUP BY payment_method
+HAVING SUM(amount) > 500000;
