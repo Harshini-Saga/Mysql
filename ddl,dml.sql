@@ -24,7 +24,7 @@ describe Telugumovies;
 
 
 -- CREATING STUDENT DATABASE
-CREATE DATABASE SCHOOL;
+CREATE DATABASE SCHOOL; 
 -- CREATING STUDENTS TABLE
 Use SCHOOL;
 CREATE TABLE Student(
@@ -89,7 +89,7 @@ values("female",7,12,"2016-01-07");
 
 Insert into student(name,gender,class,age,dob)
 values("harshini","female",2,12,"2016-01-07");
-
+  
 Insert into student(name,gender,class,age,dob)
 values("harshini","other",7,12,"2016-01-07");
 

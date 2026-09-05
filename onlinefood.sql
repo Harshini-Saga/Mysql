@@ -515,3 +515,28 @@ FROM Payments
 WHERE payment_status = 'Success'
 GROUP BY payment_method
 HAVING SUM(amount) > 500000;
+
+-- 70.Display customer full name, restaurant name, order date, order status, and final amount for every order.
+-- 71.Display every order with customer name, restaurant name, delivery partner name, and order status.
+-- 72.Display every menu item with its restaurant name and category name.
+-- 73.Display every menu item with restaurant name, category, price, vegetarian status, and availability.
+-- 74.Display every order item with order ID, food item name, quantity, item price, and total price.
+-- 75.Display every payment with customer name, restaurant name, payment method, amount, and payment status.
+-- 76.Display each restaurant with its total number of menu items.
+-- 77.Display each restaurant with its total number of orders.
+-- 78.Display each restaurant with its total revenue.
+-- 79.Display each customer with their total number of orders and total amount spent.
+-- 80.Display each delivery partner with the number of orders assigned to them.
+-- 81.Find customers who have placed orders but have never submitted a rating.
+-- 82.Find restaurants that have menu items but have never received an order.
+-- 83.Find menu items that have never been ordered.
+-- 84.Generate a complete order report showing:
+--   Customer name
+--   Restaurant
+--   Food item
+--   Quantity
+--   Item price
+--   Total item price
+--   Order date
+--   order status
+--   Final amount
